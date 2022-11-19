@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('auth.login');
+});
+
+Route::prefix('auth')->name('auth.')->group(function(){
+    Route::get('/login',[AuthController::class,'loginForm'])->name('login');
+    Route::post('/login-process',[AuthController::class,'login'])->name('login.process');
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard',DashboardController::class)->name('dashboard');
 });
