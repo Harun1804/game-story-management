@@ -14,6 +14,7 @@ class GameProject extends Model
     protected $fillable = [
         'title',
         'thumbnail',
+        'status'
     ];
 
     public function thumbnail():Attribute

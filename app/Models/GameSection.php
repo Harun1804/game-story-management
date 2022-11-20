@@ -27,4 +27,9 @@ class GameSection extends Model
     {
         return $this->hasMany(DetailSection::class);
     }
+
+    public function scopeFinishSection($query)
+    {
+        return $query->where('status',2);
+    }
 }

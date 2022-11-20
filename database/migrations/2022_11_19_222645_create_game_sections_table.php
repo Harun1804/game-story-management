@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('game_project_id')->constrained('game_projects')->onDelete('cascade');
             $table->unsignedInteger('part')->nullable();
             $table->string('title',150);
-            $table->boolean('status')->default(0);
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

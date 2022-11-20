@@ -19,6 +19,9 @@
                     <div class="auth-logo">
                         <a href="#"><img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo"></a>
                     </div>
+                    @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
                     <h1 class="auth-title">@yield('title')</h1>
                     <p class="auth-subtitle mb-5">@yield('description')</p>
                     @yield('content')

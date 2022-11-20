@@ -17,7 +17,9 @@ class AuthController extends Controller
         if(Auth::attempt($loginRequest->validated())){
             $loginRequest->session()->regenerate();
 
-            return Redirect()->route('dashboard');
+            return redirect()->route('dashboard');
         }
+
+        return redirect()->back()->with('error','Invalid Password');
     }
 }

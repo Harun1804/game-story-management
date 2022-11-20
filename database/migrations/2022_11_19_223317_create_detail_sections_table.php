@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('type',['D','M','S','E']);
             $table->longText('description');
             $table->string('dialog_with',150)->nullable();
-            $table->boolean('status')->default(0);
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
