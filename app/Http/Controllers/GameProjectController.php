@@ -7,6 +7,7 @@ use App\Models\GameProject;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreGameProjectRequest;
 use App\Http\Requests\UpdateGameProjectRequest;
+use App\Models\GameSection;
 
 class GameProjectController extends Controller
 {
@@ -14,7 +15,7 @@ class GameProjectController extends Controller
 
     public function index()
     {
-        $game_projects = GameProject::with('sections')->latest()->get();
+        $game_projects = GameProject::with('sections')->latest()->paginate(10);
         return view('gameproject.index', compact('game_projects'));
     }
 
@@ -43,7 +44,8 @@ class GameProjectController extends Controller
 
     public function show(GameProject $gameProject)
     {
-        //
+        $game_sections = GameSection::where('game_project_id',$gameProject->id)->orderBy('part','asc')->paginate(10);
+        return view('gameproject.section.index', compact('game_sections'));
     }
 
     public function edit(GameProject $gameProject)

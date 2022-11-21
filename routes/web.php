@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GameProjectController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,9 @@ Route::prefix('auth')->name('auth.')->controller(AuthController::class)->group(f
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard',DashboardController::class)->name('dashboard');
     Route::resource('game-project',GameProjectController::class);
+    Route::prefix('game-project')->group(function(){
+        Route::resource('game-section',SectionController::class,[
+            "except" => ['index']
+        ]);
+    });
 });

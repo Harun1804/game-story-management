@@ -28,4 +28,9 @@ class GameProject extends Model
     {
         return $this->hasMany(GameSection::class);
     }
+
+    public function scopeNotFinish($query)
+    {
+        return $query->where('status','!=',2);
+    }
 }
